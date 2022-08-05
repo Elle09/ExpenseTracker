@@ -1,0 +1,32 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    |     
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    |     
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    |     
+    title Report page
+    |     
+    link(rel='stylesheet', href='style.css')
+  body
+    #report.report
+      form(action='')
+        label(for='Period') Period:
+        |             
+        select#period(name='period')
+          option(value='Today') Today
+          |                 
+          option(value='weekly') Weekly
+          |                 
+          option(value='Monthly') Monthly
+      |         
+      #reportexpenses
+    |     
+    button#download.download Download Report
+    |     
+    button#back.back Back
+    |     
+    script(src='report.js')
+    script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')

@@ -1,0 +1,59 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    |   
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    |   
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    |   
+    title ExpenseTreacker
+    |   
+    link(rel='stylesheet', href='style.css')
+    |   
+    script(src='https://checkout.razorpay.com/v1/checkout.js')
+  body
+    #Signupdiv
+      form#expenseform.expenseform(action='', method='POST')
+        label(for='money') Money Had Spent:
+        |          
+        input#money.formitem(type='text', name='money')
+        br
+        |          
+        label(for='desc') Description:
+        |          
+        input#desc.formitem(type='text', name='desc')
+        br
+        |          
+        label(for='category') Choose a category:
+        |          
+        select#category(name='category')
+          option(value='Food') Food
+          |            
+          option(value='Petrol') Petrol
+          |            
+          option(value='Health') Health
+          |            
+          option(value='Entertainment') Entertainment
+          |            
+          option(value='fitness') Fitness
+          |            
+          option(value='Kids') Kids
+          |            
+          option(value='Education') Education
+        |          
+        button#addexpense.submit Submit
+      |   
+      |    
+      |    
+      button#paymentbtn.paymentbtn(type='submit') buy premium membership
+      |    
+      button#signout.signout(type='submit') Sign Out
+      |    
+      button#reporte.reporte(type='submit') report
+    #expenses.expenses
+    #pagenation
+    #leaderboard.leaderboard
+      h3 Leader Board
+    script(src='expensefeautres.js')
+    script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
