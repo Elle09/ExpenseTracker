@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Javascript: add edit delete LI</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+            li{cursor: pointer}
+        </style>
+        
+    </head>
+    <body>
+       
+        
+        <div class="form">
+            
+                <div class="formLine left">
+                    <span for="name">Choose amountexpense</span>
+                    <input type="text" id="amount">
+                    <span for="type">choose decription</span> 
+                    <select id="type1">
+                        <option value=" "></option>
+                        <option value="Movie">Movie</option>
+                        <option value="Vacation">Vacation</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Dining">Dining</option>
+                    </select>
+                    <span for="amount">Category</span>
+                    <select id="type2">
+                        <option value=" "></option>
+                        <option value="Movie">Movie</option>
+                        <option value="fuel">Fuel</option>
+                        <option value="Food">Food</option>
+                        <option value="Apparal">Apparel</option>
+                    </select>
+                
+                </div>
+                <button type="submit" class="buttonSave"  onclick="addLI()">Add a new expense</button>
+           
+        </div>
+        
+        
+        <ul id="list">
+            <li>200-movies</li>
+            
+            
+        </ul>
+        
+        <script>
+            
+            var inputText = document.getElementById("amount"),
+                 items = document.querySelectorAll("#list li"),
+                 text2= document.getElementById('type1'),
+                 text3 = document.getElementById('type2'),   
+                 
+
+                 tab = [], index;
+         
+             // get the selected li index using array
+             // populate array with li values
+             
+             for(var i = 0; i < items.length; i++){
+                 tab.push(items[i].innerHTML);
+             }
+             
+             // get li index onclick
+             for(var i = 0; i < items.length; i++){
+                 
+                 items[i].onclick = function(){
+                     index = tab.indexOf(this.innerHTML);
+                     console.log(this.innerHTML + " INDEX = " + index);
+                     // set the selected li value into input text
+                     inputText.value = this.innerHTML;
+                 };
+                 
+             }
+            
+            function refreshArray()
+            {
+                // clear array
+                tab.length = 0;
+                items = document.querySelectorAll("#list li");
+                // fill array
+                for(var i = 0; i < items.length; i++){
+                 tab.push(items[i].innerHTML);
+               }
+            }
+            function addLI(){
+                
+             var inputText = document.getElementById("amount"),
+                 items = document.querySelectorAll("#list li"),
+                 text2= document.getElementById('type1'),
+                 text3 = document.getElementById('type2'),   
+                   
+
+                 tab = [], index;
+         
+                
+                var listNode = document.getElementById("list"),
+                    textNode = document.createTextNode(inputText.value)
+                    
+                    liNode = document.createElement("LI");
+                    liNode.innerHTML+=`${inputText.value}- ${text2.value}-${text3.value}<button onclick='deleteLI()'>
+                        Delete Expense
+                       </button>-<button onclick='editLI()'>
+                        EditExpense
+                       </button>`
+                     
+                    listNode.appendChild(liNode); 
+                    
+            
+                    refreshArray();
+                   
+                    // add event to the new LI
+                    
+                    liNode.onclick = function(){
+                     index = tab.indexOf(liNode.innerHTML);
+                     console.log(liNode.innerHTML + " INDEX = " + index);
+                     //set the selected li value into input text
+                     
+                    };
+                  
+             
+             
+                    
+                }
+             
+             function editLI(){
+                 // edit the selected li using input text
+                 items[index+1].innerHTML = `${inputText.value}- ${text2.value}-${text3.value}<button onclick='deleteLI()'>
+                        Delete Expense
+                       </button>-<button onclick='editLI()'>
+                        EditExpense
+                       </button>`
+                 refreshArray();
+              }
+              
+              function deleteLI(){
+                  
+                      refreshArray();
+                      if(items.length > 0){
+                          items[index+1].parentNode.removeChild(items[index+1]);
+                          inputText.value = "";
+                      }
+              }
+            
+        </script>
+        
+    </body>
+</html>
