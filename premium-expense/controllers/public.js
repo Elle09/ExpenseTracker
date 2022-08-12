@@ -71,7 +71,7 @@ exports.login=(async (req,res,next)=>{
                
              }
             else{
-                console.log("i am here inside not found")
+                console.log("not logged")
                 return res.status(401).json({success: false, message: 'passwords do not match'});
                
             }
