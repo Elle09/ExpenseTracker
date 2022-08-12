@@ -62,7 +62,7 @@ exports.login=(async (req,res,next)=>{
                 return res.json({success: false, message: 'Something went wrong'})
             }
             if(response){
-                console.log("i am here inside response")
+                console.log(" logged")
                 const jwttoken=generateAccessTocken(result[0].id)
                 res.json({token: jwttoken, success: true, message: 'Successfully Logged In'})
                 res.render('expense', {
